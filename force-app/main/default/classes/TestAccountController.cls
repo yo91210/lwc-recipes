@@ -4,7 +4,7 @@ public class TestAccountController {
         List<Account> accounts = new List<Account>();
 
         for (Integer i = 1; i <= amount; i++) {
-            accounts.add(new Account(Name = 'Name ' + i));
+            accounts.add(new Account(Name = 'Name ' + i, Phone = '555-000' + i, Type = 'Customer'));
         }
 
         insert accounts;
@@ -19,6 +19,10 @@ public class TestAccountController {
         Test.stopTest();
 
         System.assertEquals(accts.size(), 10);
+        System.assertNotEquals(null, accts[0].Phone);
+        System.assertEquals('555-0001', accts[0].Phone);
+        System.assertNotEquals(null, accts[0].Type);
+        System.assertEquals('Customer', accts[0].Type);
     }
 
     @isTest
