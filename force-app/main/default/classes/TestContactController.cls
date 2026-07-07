@@ -104,4 +104,20 @@ public with sharing class TestContactController {
         }
         Test.stopTest();
     }
+
+    @isTest
+    static void getSingleContactNoData() {
+        User u = getRunAsUser();
+
+        Test.startTest();
+        System.runAs(u) {
+            Contact cont = ContactController.getSingleContact();
+            System.assertEquals(
+                null,
+                cont,
+                'getSingleContact should return null when no contact matches'
+            );
+        }
+        Test.stopTest();
+    }
 }

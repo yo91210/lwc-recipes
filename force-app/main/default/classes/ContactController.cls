@@ -27,11 +27,12 @@ public with sharing class ContactController {
 
     @AuraEnabled(cacheable=true)
     public static Contact getSingleContact() {
-        return [
+        List<Contact> contacts = [
             SELECT Id, Name, Title, Phone, Email, Picture__c
             FROM Contact
             WITH USER_MODE
             LIMIT 1
         ];
+        return contacts.isEmpty() ? null : contacts[0];
     }
 }
